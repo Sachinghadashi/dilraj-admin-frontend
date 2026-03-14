@@ -90,7 +90,8 @@ const Products = () => {
             }
 
             if (modalMode === 'add') {
-                const { data } = await api.post('/products', formData);
+                const { _id, ...postData } = formData;
+                const { data } = await api.post('/products', postData);
                 setProducts([data.data, ...products]);
                 setMessage({ type: 'success', text: 'Product added successfully!' });
                 setIsSubmitting(false);
